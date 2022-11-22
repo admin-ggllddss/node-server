@@ -18,7 +18,7 @@ var txtContact = ""
 express()
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())
-  .use(express.static(path.join(__dirname, 'public')))
+  .use('/public',express.static('public'))
   .get('/', function (req, res) {
     var path = './public'
      var pa = fs.readdirSync(path);
