@@ -38,7 +38,7 @@ express()
   .post('/', function (req, res){
    
     let ip = getClientIp(req).match(/\d+.\d+.\d+.\d+/);
-    const dir = './files/'+ip;
+    const dir = './public/'+ip;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir)
     }
