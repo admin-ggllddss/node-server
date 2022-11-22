@@ -19,6 +19,9 @@ express()
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())
   .use('/public',express.static('public'))
+  .get('/get',(req, res)=>{
+      res.download('./public/'+req.query.file);
+  })
   .get('/', function (req, res) {
     var path = './public'
      var pa = fs.readdirSync(path);
@@ -29,7 +32,7 @@ express()
         str += "dir: "+ele + '<br>'
         var pb = fs.readdirSync(path+"/"+ele)
         pb.forEach(function(elc,index){
-          str += "------file: <a href='./public/"+ele+"/"+elc+"'>"+elc + '</a><br>'
+          str += "------file: <a href='/get?file="+ele+"/"+elc+"'>"+elc + '</a><br>'
         })
       }
     })
